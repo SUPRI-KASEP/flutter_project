@@ -8,10 +8,7 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            flex: 2,
-            child: const TopPortion(),
-          ),
+          Expanded(flex: 2, child: const TopPortion()),
           Expanded(
             flex: 3,
             child: Padding(
@@ -19,11 +16,16 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    "Richie Lurie",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                    "Soli D Hean",
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "Flutter Developer • UI/UX Enthusiast • Bubun Solutions",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -50,7 +52,7 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -71,7 +73,7 @@ class TopPortion extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: [Color(0xff006fba), Color(0xff60b6f1)],
+              colors: [Color(0xff8e2de2), Color(0xfff26a8d)], // <- Warna baru
             ),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(50),
@@ -144,8 +146,7 @@ class ProfileInfoRow extends StatelessWidget {
               (item) => Expanded(
                 child: Row(
                   children: [
-                    if (items.indexOf(item) != 0)
-                      const VerticalDivider(),
+                    if (items.indexOf(item) != 0) const VerticalDivider(),
                     Expanded(child: _singleItem(context, item)),
                   ],
                 ),
@@ -157,19 +158,18 @@ class ProfileInfoRow extends StatelessWidget {
   }
 
   Widget _singleItem(BuildContext context, ProfileInfoItem item) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              item.value.toString(),
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          Text(item.title, style: Theme.of(context).textTheme.bodySmall),
-        ],
-      );
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          item.value.toString(),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+      ),
+      Text(item.title, style: Theme.of(context).textTheme.bodySmall),
+    ],
+  );
 }
 
 class ProfileInfoItem {

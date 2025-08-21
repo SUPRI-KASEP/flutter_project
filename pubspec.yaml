@@ -19,3 +19,5 @@ flutter:
   uses-material-design: true
   assets:
   - assets/image/abun.png
+  - assets/image/mugiwara.jpeg
+
