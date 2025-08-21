@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/edit.dart';
+import 'package:flutter_application_1/login.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -6,9 +8,30 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true, // agar AppBar transparan menyatu background
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          'Ucu Nie Bossss',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.red),
+            tooltip: 'Logout',
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
-          Expanded(flex: 2, child: const TopPortion()),
+          const Expanded(flex: 2, child: TopPortion()),
           Expanded(
             flex: 3,
             child: Padding(
@@ -39,11 +62,19 @@ class ProfilePage extends StatelessWidget {
                       ),
                       const SizedBox(width: 16.0),
                       FloatingActionButton.extended(
-                        onPressed: () {},
-                        heroTag: "message",
+                        heroTag: "edit",
                         backgroundColor: Colors.red,
-                        label: const Text("Message"),
-                        icon: const Icon(Icons.message_rounded),
+                        label: const Text("Edit"),
+                        icon: const Icon(Icons.edit),
+                        tooltip: "Edit Profil",
+                        onPressed:() {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const EditPage(),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -73,7 +104,7 @@ class TopPortion extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: [Color(0xff8e2de2), Color(0xfff26a8d)], // <- Warna baru
+              colors: [Color(0xff8e2de2), Color(0xfff26a8d)],
             ),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(50),

@@ -21,9 +21,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Aplikasi Flutter'),
-      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: NavigationBar(
         animationDuration: const Duration(milliseconds: 300),
