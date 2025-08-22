@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/api_service.dart';
 import 'package:flutter_application_1/home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,7 +11,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final ApiService apiService = ApiService();
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   bool _isPasswordVisible = false;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,9 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: const AssetImage('assets/image/mugiwara.jpeg'), // Gambar background
+            image: const AssetImage(
+              'assets/image/mugiwara.jpeg',
+            ), // Gambar background
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.4), // Efek gelap
@@ -34,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 // Logo Mugiwara di atas form
-                
                 const SizedBox(height: 30),
 
                 // Card form login
@@ -90,7 +97,9 @@ class _LoginPageState extends State<LoginPage> {
                             if (value == null || value.isEmpty) {
                               return 'Email tidak boleh kosong';
                             }
-                            final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                            final emailRegex = RegExp(
+                              r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                            );
                             if (!emailRegex.hasMatch(value)) {
                               return 'Format email tidak valid';
                             }
@@ -155,7 +164,8 @@ class _LoginPageState extends State<LoginPage> {
                                 Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const HomePage()),
+                                    builder: (context) => const HomePage(),
+                                  ),
                                 );
                               }
                             },
